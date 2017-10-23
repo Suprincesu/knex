@@ -2,14 +2,25 @@ const bcrypt=require('bcryptjs');
 const jwt = require('jsonwebtoken');
 var knex=require('../db/knex');
 
+const secret='abc123';
 
 generateAuthToken=function(user,callback){
     var access='auth';
     var token=jwt.sign({
         _id:user.id,
         access
-    },'abc123').toString();
+    },secret).toString();
     callback(token);
+}
+
+validateToken=function(token,callback){
+    jwt.verify(token,secret,(err,decoded){
+        if(err){
+            callback(err);
+        }else{
+            callback(decoded);
+        }
+    })
 }
 
 encryptPassword=function(password,callback){
@@ -36,6 +47,7 @@ comparePassword=function(password,hashedPassword,callback){
 module.exports={
     generateAuthToken,
     encryptPassword,
-    comparePassword
+    comparePassword,
+    validateToken
 };
 
