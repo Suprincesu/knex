@@ -13,7 +13,7 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "jsonwebtoken": "^7.4.3",
-    "knex": "^0.13.0",
+    "knex": "^0.19.5",
     "lodash": "^4.17.4",
     "pg": "^7.3.0",
     "validator": "^8.1.0"
